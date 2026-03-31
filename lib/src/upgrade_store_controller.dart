@@ -192,7 +192,8 @@ class UpgraderAppcastStore extends UpgraderStore {
             client: state.client,
             clientHeaders: state.clientHeaders,
             upgraderOS: state.upgraderOS,
-            osVersion: parsedOsVersion);
+            osVersion: parsedOsVersion,
+            currentAppVersion: installedVersion);
     await localAppcast.parseAppcastItemsFromUri(appcastURL);
     if (state.debugLogging) {
       var count = localAppcast.items == null ? 0 : localAppcast.items!.length;
