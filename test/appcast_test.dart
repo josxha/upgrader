@@ -181,7 +181,7 @@ void main() {
       currentAppVersion: Version(1, 9, 0),
     );
     await appcast19.parseAppcastItemsFromFile(await getTestFile());
-    expect(appcast19.bestItem()?.versionString, equals('6.0'));
+    expect(appcast19.bestItem()?.versionString, equals('6.0.0'));
 
     final appcast18 = TestAppcast(
       upgraderOS: MockUpgraderOS(android: true),
@@ -194,8 +194,8 @@ void main() {
 
   test('minimumUpdateVersion allows 1.9 but blocks 1.8', () {
     final item = AppcastItem(
-      versionString: '6.0',
-      minimumUpdateVersion: '1.9',
+      versionString: '6.0.0',
+      minimumUpdateVersion: '1.9.0',
     );
 
     expect(
@@ -316,13 +316,13 @@ void validateItems(List<AppcastItem> items, Appcast appcast) {
   expect(items[4].isCriticalUpdate, equals(false));
   expect(items[4].maximumSystemVersion, isNull);
   expect(items[4].minimumSystemVersion, isNull);
-  expect(items[4].minimumUpdateVersion, equals('1.9'));
-  expect(items[4].versionString, equals('6.0'));
+  expect(items[4].minimumUpdateVersion, equals('1.9.0'));
+  expect(items[4].versionString, equals('6.0.0'));
   expect(items[4].osString, isNull);
 
   final bestItem = appcast.bestItem()!;
   expect(bestItem, isNotNull);
-  expect(bestItem.versionString, equals('6.0'));
+  expect(bestItem.versionString, equals('6.0.0'));
   expect(
       bestItem.hostSupportsItem(
           osVersion: Version(0, 0, 1), currentPlatform: 'android'),
