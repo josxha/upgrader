@@ -192,7 +192,7 @@ void main() {
     expect(appcast18.bestItem()?.versionString, equals('5.0'));
   });
 
-  test('minimumUpdateVersion allows 1.9 but blocks 1.8', () {
+  test('minimumUpdateVersion allows 1.9.0 but blocks 1.8.0', () {
     final item = AppcastItem(
       versionString: '6.0.0',
       minimumUpdateVersion: '1.9.0',
