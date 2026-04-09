@@ -183,7 +183,8 @@ class Appcast {
             } else if (name == AppcastConstants.ElementMinimumSystemVersion) {
               minimumSystemVersion = childNode.innerText;
             } else if (name == AppcastConstants.ElementMinimumUpdateVersion) {
-              minimumUpdateVersion = childNode.innerText;
+              final text = childNode.innerText.trim();
+              minimumUpdateVersion = text.isEmpty ? null : text;
             } else if (name == AppcastConstants.ElementPubDate) {
               dateString = childNode.innerText;
             } else if (name == AppcastConstants.ElementReleaseNotesLink) {

@@ -226,6 +226,50 @@ void main() {
     );
   });
 
+  test('minimumUpdateVersion trims whitespace from XML', () async {
+    final appcast = TestAppcast(
+      upgraderOS: MockUpgraderOS(android: true),
+      osVersion: Version(0, 0, 0),
+      currentAppVersion: Version(1, 9, 0),
+    );
+    const xml = '''<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <item>
+      <sparkle:version>6.0.0</sparkle:version>
+      <sparkle:minimumUpdateVersion>
+        1.9.0
+      </sparkle:minimumUpdateVersion>
+    </item>
+  </channel>
+</rss>''';
+    await appcast.parseAppcastItems(xml);
+    final best = appcast.bestItem();
+    expect(best, isNotNull);
+    expect(best!.minimumUpdateVersion, equals('1.9.0'));
+    expect(best.versionString, equals('6.0.0'));
+  });
+
+  test('minimumUpdateVersion empty whitespace get treated as null', () async {
+    final appcast = TestAppcast(
+      upgraderOS: MockUpgraderOS(android: true),
+      osVersion: Version(0, 0, 0),
+    );
+    const xml = '''<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <item>
+      <sparkle:version>6.0.0</sparkle:version>
+      <sparkle:minimumUpdateVersion>   </sparkle:minimumUpdateVersion>
+    </item>
+  </channel>
+</rss>''';
+    await appcast.parseAppcastItems(xml);
+    final best = appcast.bestItem();
+    expect(best, isNotNull);
+    expect(best!.minimumUpdateVersion, isNull);
+  });
+
   test('Appcast multi multi enclosure', () async {
     final appcast = TestAppcast(
         upgraderOS: MockUpgraderOS(android: true), osVersion: Version(0, 0, 0));
