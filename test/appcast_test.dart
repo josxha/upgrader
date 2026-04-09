@@ -250,7 +250,7 @@ void main() {
     expect(best.versionString, equals('6.0.0'));
   });
 
-  test('minimumUpdateVersion empty whitespace get treated as null', () async {
+  test('minimumUpdateVersion empty whitespace is treated as null', () async {
     final appcast = TestAppcast(
       upgraderOS: MockUpgraderOS(android: true),
       osVersion: Version(0, 0, 0),
