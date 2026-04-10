@@ -1,9 +1,6 @@
-## 13.1.0
-
-- [542] Added minimumUpdateVersion parsing for Appcast XML. (thanks to @FaresHossamAmin)
-
 ## 13.0.0
 
+- [542] Added minimumUpdateVersion parsing for Appcast XML. (thanks to @FaresHossamAmin)
 - Fixed [515]: Remove version package exposure from UpgraderAppcastStore.
 - Fixed [470]: Option to suppress optional updates.
 - Improved documentation.
