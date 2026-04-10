@@ -312,7 +312,9 @@ class AppcastItem {
           print('upgrader: hostSupportsItem invalid minimumSystemVersion: $e');
         }
       }
-      if (supported && minimumUpdateVersion != null && currentAppVersion != null) {
+      if (supported &&
+          minimumUpdateVersion != null &&
+          currentAppVersion != null) {
         try {
           final minUpdateVersion = Version.parse(minimumUpdateVersion!);
           if (currentAppVersion < minUpdateVersion) {
